@@ -1,16 +1,13 @@
 import { BookingForm } from "@/components/BookingForm";
+import { buildCatalogWhatsAppUrl, catalogProducts } from "@/data/catalog";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useCart } from "@/contexts/CartContext";
 import { useLocale } from "@/contexts/LocaleContext";
-import { formatMoney } from "@/lib/format";
 import { trpc } from "@/lib/trpc";
 import { filterGalleryItems, getGalleryObjectPosition, getLocalizedGalleryAlt, type GalleryCategory, type GalleryItem } from "@shared/siteContent";
 import { musicPlatforms, officialYouTubeReleases } from "@shared/musicCatalog";
-import { getLocalizedMerch, type MerchLocale } from "@shared/merchCatalog";
 import { BOOKING_PHONE_DISPLAY, buildBookingWhatsAppUrl } from "@shared/siteBrand";
-import type { Product } from "@shared/commerce/types";
-import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle, ShoppingBag } from "lucide-react";
+import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
 import { useMemo, useState } from "react";
 
@@ -63,8 +60,38 @@ export function MusicPage() { const { locale } = useLocale(); const t = translat
 
 export function MediaPage() { const { locale } = useLocale(); const t = translations[locale]; const [filter, setFilter] = useState<GalleryCategory>("all"); const [selected, setSelected] = useState<GalleryItem | null>(null); const images = useMemo(() => filterGalleryItems(filter), [filter]); const filters: { value: GalleryCategory; label: string }[] = [{ value: "all", label: t.all }, { value: "concert", label: t.concert }, { value: "session", label: t.session }, { value: "backstage", label: t.backstage }]; return <><PageIntro number="04" eyebrow={t.media} title="" copy="" image="/manus-storage/IMG_1926_b8114bf8.webp" portrait colorOnHover /><section className="mx-auto max-w-[1600px] px-5 py-18 lg:px-10 lg:py-28"><div className="flex flex-wrap gap-2">{filters.map(item => <button onClick={() => setFilter(item.value)} key={item.value} className={`border px-4 py-2 text-[.68rem] uppercase tracking-[.13em] transition ${filter === item.value ? "border-white bg-white text-black" : "border-white/20 text-zinc-500 hover:border-white hover:text-white"}`}>{item.label}</button>)}</div><div className="mt-8 columns-2 gap-3 sm:columns-3 lg:columns-4">{images.map((image, index) => <button onClick={() => setSelected(image)} key={image.src} className="group relative mb-3 block w-full overflow-hidden bg-zinc-900 text-left"><img src={image.src} alt={getLocalizedGalleryAlt(image, locale)} loading="lazy" className={`w-full object-cover ${getGalleryObjectPosition(image)} brightness-110 contrast-110 grayscale transition duration-700 group-hover:scale-105 group-hover:brightness-100 group-hover:grayscale-0 ${index % 5 === 0 ? "aspect-square" : ""}`} /><span className="absolute inset-0 bg-white/0 transition group-hover:bg-white/10" /></button>)}</div></section><Dialog open={Boolean(selected)} onOpenChange={open => !open && setSelected(null)}><DialogContent className="max-h-[92vh] max-w-5xl border-white/15 bg-black p-2 text-white"><DialogTitle className="sr-only">{selected ? getLocalizedGalleryAlt(selected, locale) : t.image}</DialogTitle>{selected && <img src={selected.src} alt={getLocalizedGalleryAlt(selected, locale)} className="max-h-[85vh] w-full object-contain" />}</DialogContent></Dialog></>; }
 
-function ProductCard({ product, label, locale }: { product: Product; label: string; locale: MerchLocale }) { const { addItem, loading } = useCart(); const variant = product.variants[0]; const image = product.images[0]; const copy = getLocalizedMerch(product.handle, locale, product.title); if (!variant) return null; return <article className="border border-white/15 bg-black p-3"><div className="overflow-hidden bg-zinc-950">{image ? <img src={image.url} alt={image.altText ?? copy.title} className="aspect-square w-full object-cover grayscale transition duration-700 hover:scale-105 hover:grayscale-0" /> : <div className="grid aspect-square place-items-center"><ShoppingBag className="size-7 text-zinc-600" /></div>}</div><div className="p-3"><h3 className="text-sm font-semibold">{copy.title}</h3>{copy.description && <p className="mt-2 min-h-10 text-xs leading-5 text-zinc-500">{copy.description}</p>}<p className="mt-3 text-xs text-zinc-300">{formatMoney(product.priceRange.min)}</p><Button onClick={() => addItem(variant.id)} disabled={!variant.availableForSale || loading} className="mt-5 w-full rounded-none bg-white text-black hover:bg-zinc-200"><ShoppingBag className="mr-2 size-4" />{label}</Button></div></article>; }
+export function ShopPage() {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  const catalogTitle = locale === "az" ? "Rəsmi məhsullar" : "Official collection";
+  const catalogCopy = locale === "az" ? "Məhsul haqqında məlumat və sifariş üçün birbaşa WhatsApp-dan yazın." : "Message directly on WhatsApp for product details and orders.";
+  const orderLabel = locale === "az" ? "WhatsApp ilə soruş" : "Ask on WhatsApp";
 
-export function ShopPage() { const { locale } = useLocale(); const t = translations[locale]; const products = trpc.commerce.products.list.useQuery({ first: 8 }, { retry: false, refetchOnWindowFocus: false }); return <><PageIntro number="05" eyebrow={t.shop} title="" copy={locale === "az" ? "Rəsmi Cavidan Fatihi məhsulları və seçilmiş kolleksiya." : "Official Cavidan Fatihi pieces and a selected collection."} image="/manus-storage/IMG_0726_d83aa2df.webp" /><section className="mx-auto max-w-[1600px] px-5 py-18 lg:px-10 lg:py-28"><p className="mono">{t.catalogue}</p>{products.isLoading ? <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, index) => <div key={index} className="aspect-[3/4] animate-pulse bg-zinc-900" />)}</div> : products.data?.length ? <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{products.data.map(product => <ProductCard key={product.id} product={product} label={t.add} locale={locale} />)}</div> : <div className="mt-8 border border-dashed border-white/20 p-8"><h2 className="type-display text-3xl">{t.noProducts}</h2><p className="mt-3 max-w-lg text-sm leading-7 text-zinc-400">{t.noProductsHint}</p></div>}</section></>; }
+  return <>
+    <PageIntro number="05" eyebrow={t.shop} title="" copy={locale === "az" ? "Rəsmi Cavidan Fatihi məhsulları və seçilmiş kolleksiya." : "Official Cavidan Fatihi products and selected collection."} image="/manus-storage/IMG_0726_d83aa2df.webp" />
+    <section className="mx-auto max-w-[1600px] px-5 py-18 lg:px-10 lg:py-28">
+      <div className="max-w-2xl border-l border-white/30 pl-5">
+        <p className="mono">{catalogTitle}</p>
+        <p className="mt-3 text-sm leading-7 text-zinc-400">{catalogCopy}</p>
+      </div>
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {catalogProducts.map(product => {
+          const copy = product[locale];
+          return <article key={product.id} className="group overflow-hidden border border-white/15 bg-zinc-950">
+            <div className="aspect-square overflow-hidden bg-zinc-900">
+              <img src={product.image} alt={copy.title} loading="lazy" className="size-full object-cover transition duration-700 group-hover:scale-105" />
+            </div>
+            <div className="p-5">
+              <p className="mono text-zinc-500">AZN {product.price}</p>
+              <h2 className="mt-3 text-xl font-semibold tracking-[.03em] text-white">{copy.title}</h2>
+              <p className="mt-3 min-h-12 text-sm leading-6 text-zinc-400">{copy.description}</p>
+              <a href={buildCatalogWhatsAppUrl(copy.title, product.price, locale)} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 border-b border-white/50 pb-2 text-[.68rem] font-bold uppercase tracking-[.15em] text-white transition hover:border-white hover:text-zinc-300">{orderLabel} <ArrowDownRight className="size-4" /></a>
+            </div>
+          </article>;
+        })}
+      </div>
+    </section>
+  </>;
+}
 
 export function ContactPage() { const { locale } = useLocale(); const t = translations[locale]; return <><PageIntro number="06" eyebrow={t.contact} title="" copy={t.contactCopy} image="/manus-storage/IMG_9662_508d06f8.webp" /><section className="mx-auto grid max-w-[1600px] gap-12 px-5 py-18 lg:grid-cols-[.75fr_1.25fr] lg:px-10 lg:py-28"><div><p className="text-[.68rem] font-semibold uppercase tracking-[.16em] text-zinc-300">{t.whatsappBooking}</p><a href={buildBookingWhatsAppUrl(locale)} target="_blank" rel="noreferrer" className="mt-5 block text-2xl font-semibold tracking-[.12em] text-white transition hover:text-zinc-400 sm:text-3xl">{BOOKING_PHONE_DISPLAY}</a><p className="mt-6 max-w-md text-[.72rem] font-medium uppercase leading-7 tracking-[.08em] text-zinc-400">{locale === "az" ? "Tədbir formatı, tarix və məkan barədə qısa məlumatla birbaşa WhatsApp üzərindən yaza bilərsiniz." : "You can write directly on WhatsApp with a short outline of your event format, date and venue."}</p><WhatsAppLink className="mt-8 inline-flex items-center gap-2 border-b border-white/40 pb-2 text-[.72rem] font-bold uppercase tracking-[.15em] text-white transition hover:border-white hover:text-zinc-300">{t.whatsapp} <MessageCircle className="size-4" /></WhatsAppLink></div><div className="border-t border-white/20 pt-6"><p className="text-[.68rem] font-semibold uppercase tracking-[.16em] text-zinc-300">{t.formTitle}</p><h2 className="mt-4 max-w-xl text-xl font-medium leading-8 text-zinc-200 sm:text-2xl">{t.formCopy}</h2><div className="mt-10"><BookingForm locale={locale} /></div></div></section></>; }
