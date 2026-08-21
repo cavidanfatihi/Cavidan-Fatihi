@@ -1,0 +1,91 @@
+# Project TODO
+
+- [x] Koyu zemin, canlı konser atmosferi ve seçilecek tek bir vurgu paletiyle premium responsive görsel sistemi oluşturmak.
+- [x] Kullanıcının yüklediği konser, profesyonel fotosesyon ve backstage görsellerini belirtilen bölümlere göre haritalamak.
+- [x] Header, favicon ve sosyal paylaşım önizlemesinde IMG_8446.webp ana profil görselini kullanmak.
+- [x] Tam ekran konser görselli hero, sanatçı adı, kısa tanıtım, sosyal bağlantılar ve öne çıkan müzik alanını oluşturmak.
+- [x] Hakkımda bölümü için biyografi alanı ve profesyonel portre galerisi oluşturmak.
+- [x] Konser, fotosesyon ve backstage filtreleri ile lightbox destekli galeri oluşturmak.
+- [x] Yaklaşan etkinlik listesi, boş durum mesajı ve geçmiş konser medyası alanını oluşturmak.
+- [x] Spotify alanı, YouTube video alanı ve platform geçiş bağlantılarını hazırlamak.
+- [x] YouTube, Instagram, Spotify, Apple Music, TikTok, Facebook ve X için sağlanan profil bağlantılarını tüm ilgili alanlara eklemek.
+- [x] Etkinlik, doğum günü, kurumsal organizasyon ve düğün/nişan taleplerini kapsayan modern Əməkdaşlıq/rezervasyon çağrısı oluşturmak.
+- [x] İletişim formu, mobil hamburger menü ve sosyal linkli footer oluşturmak.
+- [x] Temel SEO ve sosyal paylaşım meta etiketlerini yapılandırmak.
+- [x] Gelecekte ürün, sepet ve ödeme entegrasyonuna uygun merch mağazası arayüzünü ve veri yapısını hazırlamak.
+- [x] Shopify Storefront API üzerinden canlı ürün kataloğu, sepet durumu ve Shopify checkout yönlendirmesini bağlamak.
+- [x] Ürün bulunmadığında mağaza alanında bilgilendirici boş durum göstermek ve katalog sonradan eklenmeye hazır kalmak.
+- [x] Tasarım ve işlevsellik için otomatik testler eklemek.
+- [x] Booking/konser talepleri için e-posta adresi bekleniyor; mevcut akış WhatsApp rezervasiya ile çalışıyor.
+- [x] Hakkımda bölümüne ek profesyonel portrelerle kompakt bir portre galerisi eklemek.
+- [x] Musiqi & Kliplər bölümüne birden fazla video kartından oluşan YouTube video ızgarası eklemek.
+- [x] Booking e-posta adresi sağlanana kadar ayrı e-posta alanında açık ve dürüst bir yönlendirme göstermek.
+- [x] Gökhan Türkmen referans sitesi analizine ve kullanıcı tercihine göre mevcut ana sayfa görsel yönünü yeniden tasarlamak.
+- [x] CF monogramı ve beyaz-siyah resmi sanatçı kimliği için yeni logo varlığı oluşturmak.
+- [x] Tam ekran görsel sliderı ve sessiz klip önizlemesini içeren yeni ana sayfayı tasarlamak.
+- [x] Hakkımda, Konsertlər, Musiqi, Media, Mağaza ve Əlaqə için ayrı sayfa mimarisini oluşturmak.
+- [x] Azerbaycanca ve İngilizce içerik ile çalışan erişilebilir dil seçicisini eklemek.
+- [x] WhatsApp booking çağrısını +994 99 299 11 77 numarasına bağlamak.
+- [x] Kullanıcının sağladığı Azerbaycanca biyografiyi ve anlamı koruyan İngilizce çevirisini Hakkımda sayfasına eklemek.
+- [x] Final CF monogramını header, favicon ve sosyal paylaşım metaverilerinde tutarlı biçimde kullanmak.
+- [x] Sayfa genelindeki görünür metinleri, erişilebilirlik etiketlerini ve belge metaverilerini AZ/EN dil seçimiyle tutarlı hale getirmek.
+- [x] Sepet çekmecesindeki erişilebilirlik etiketlerini aktif dile göre yerelleştirmek.
+- [x] Galeri görselleri için AZ/EN alt metinleri tanımlamak ve medya sayfasında aktif dili kullanmak.
+- [x] Marka adı dışındaki kalan sabit metin ve etiketleri ikinci kez yerelleştirme denetiminden geçirmek.
+- [x] AZ/EN seçimini tüm ayrı sayfalarda doğrulamak ve kalan sabit metinlerle erişilebilirlik etiketlerini yerelleştirmek.
+- [x] Çok sayfalı yerelleştirme kontrol listesiyle görünür metin ve aria-label kapsamını kayda geçirmek.
+- [x] Tüm ayrı sayfaları AZ ve EN modlarında rota bazında canlı doğrulamak.
+- [x] AZ arayüzde kalan karışık Booking metinlerini tutarlı Azerbaycanca karşılıklarla değiştirmek.
+- [x] Yerelleştirme kontrol listesine ana sayfa, header/footer, sepet çekmecesi ve kritik aria-label kapsamını eklemek.
+- [x] Ana sayfadaki değişen slider başlıklarını ve slayt geçişlerini kaldırarak tek, sabit gitar performansı görseli kullanmak.
+- [x] Minimalist hero düzeninde Tutqun eserini gömülü oynatıcı olarak sunmak.
+- [x] Tutqun gömülü oynatıcısının canlı yüklenmesini doğrulamak.
+- [x] Ana sayfadaki slogan ve ek metinleri kaldırarak çok sade, video odaklı bir giriş oluşturmak.
+- [x] YouTube embed yerine kullanıcının sağladığı Xatirə MP4 videosu ana sayfada sessiz biçimde 30. saniyeden başlatılıyor.
+- [x] YouTube embed yerine kullanıcının sağladığı solo konser MP4 videosu Konsertlər sayfasında arka plan olarak kullanılıyor.
+- [x] Ana ve içerik sayfalarındaki portre görsellerinde yüz/baş kadrajını koruyacak object-position ayarları uygulamak.
+- [x] Murat Boz referansının sade video odaklı yönünü analiz ederek ilgili sayfalara uyarlamak.
+- [x] Ana giriş ve konser için doğrudan MP4 dosyaları alındı ve kalıcı web varlıkları olarak yüklendi.
+- [x] Portre kullanılan sayfa ve galeri yüzeylerinde object-position, object-contain ve rota bazlı görsel kontroller uygulandı.
+- [x] Gerçek Xatirə MP4 videosu alındı; 30. saniyə gitaralı poster yalnızca video yüklenene kadar yedek olarak kullanılıyor.
+- [x] Portre kullanılan ana sayfa, Hakkımda, Müzik kartları, Medya galerisi ve sayfa girişlerini rota bazında kadraj açısından doğrulamak.
+- [x] Gereken portrelerde görsel bazında object-position ayarı uygulamak ve kadraj kontrol notunu güncellemek.
+- [x] İç sayfa girişlerindeki portreleri kırpılmadan göstermek için contain tabanlı kadraj uygulamak.
+- [x] Sorunlu portre yüzeylerine görsel bazında özel object-position değerleri uygulamak.
+- [x] Kadraj doğrulama notunu rota ve görsel kapsamıyla yeniden doğrulamak.
+- [x] Yüklenen Xatirə videosunu ana sayfada 30. saniyeden başlayan sessiz, döngülü arka plan videosu olarak bağlamak.
+- [x] Yüklenen solo konser videosunu Konsertlər sayfasında sessiz, döngülü arka plan videosu olarak bağlamak.
+- [x] Video arka planlarının mobil ve masaüstünde yüz kadrajını koruduğunu doğrulamak.
+- [x] Header içindeki CF/Cavidan Fatihi kimliğini ana girişte daha görünür olacak biçimde büyütmek.
+- [x] Üst navigasyon sayfa adlarını daha büyük, yüksek kontrastlı ve okunaklı hale getirmek.
+- [x] Tüm görünür Rezervasiya çağrılarını Azerbaycanca Əməkdaşlıq olarak değiştirmek.
+- [x] Müzik bölümündeki kapak kartlarını kaldırıp doğrudan YouTube bağlantılı sade eser listesi oluşturmak.
+- [x] İletişim ve iş birliği alanındaki telefon ile metin tipografisini yalın, landing page ile uyumlu bir stile dönüştürmek.
+- [x] Ana girişteki Xatirə video katmanını siyah-beyaz estetikte göstermek.
+- [x] Tüm navigasyon ve sayfa metinlerinde Haqqımda adını Bioqrafiya olarak güncellemek.
+- [x] Resmi YouTube kanalındaki erişilebilir yayınları derleyip müzik listesine eklemek.
+- [x] Musiqi sayfasında Spotify, Apple Music, Deezer ve sağlanan diğer müzik platformu bağlantılarını görünür olarak eklemek.
+- [x] Ana sayfanın altına Facebook, Instagram, Spotify, Apple Music, Deezer ve YouTube için büyük platform logolu bağlantılar eklemek.
+- [x] Mobil ana giriş videosunda siyah boşlukları kaldırıp yüz kadrajını koruyan tam ekran video yerleşimi uygulamak.
+- [x] Bioqrafiya sayfasında büyük Bioqrafiya başlığını koruyup kısa tanıtım cümlesini ve üç maddelik zaman çizelgesini kaldırmak.
+- [x] Media sayfasındaki “Görüntüdən daha çox” cümlesini kaldırıp üst görseli elde gitar case bulunan fotoğrafla değiştirmek.
+- [x] Ana sayfadaki platform bağlantılarını sağ sabit şeritten kaldırıp aşağıda ortalanmış, daha büyük ikonlarla göstermek.
+- [x] Mevcut imzalı tişörtü koruyup imzalı vinil, açarlık, kepka, svitşört, fincan ve gitara mizrabı ürünlerini Shopify kataloğuna eklemek. Sonraki nihai katalog isteği bu ara ürün listesinin yerini aldı.
+- [x] Mağaza kataloğunu yalnızca Xatirə vinyl 40 AZN, FATİHİ tote bag 15 AZN, CavidanFatihi keyrings 8 AZN, FATİHİ cup 10 AZN, FATİHİ pullover hoodie 50 AZN ve CF hat 15 AZN ürünleriyle sınırlandırmak.
+- [x] Ürün adlarını ve ürün açıklamalarını Azerbaycanca/İngilizce mağaza diline göre uyarlamak.
+- [x] Başarısız Shopify görsel yer tutucularını geçerli ürün görselleriyle değiştirmek ve mağaza kartlarında doğrulamak.
+- [x] Shopify’daki ürün başlıklarını kullanıcı tarafından belirlenen nihai yazıma göre düzeltmek ve yeniden doğrulamak.
+- [x] Mağaza ürün adları ve açıklamaları için aktif dile göre AZ/EN yerelleştirme uygulamak ve iki modda doğrulamak.
+- [x] Ana səhifə videosunun aşağı hissəsində Facebook, Instagram, Spotify, Apple Music, Deezer və YouTube üçün orta ölçülü platforma loqolarını görünən şəkildə yerləşdirmək.
+- [x] Mağaza, Musiqi və Əlaqə səhifələrindən müvafiq əlavə başlıq cümlələrini silmək.
+- [x] Bioqrafiya və Media səhifələrindəki böyük giriş başlıqlarını silmək.
+- [x] Bioqrafiya və Media giriş şəkillərinin aydınlığını artırmaq, hover zamanı isə rəngli görüntüyə keçidi daha nəzərəçarpan etmək.
+- [x] Musiqi, Media və Bioqrafiya giriş şəkillərində qalereyadakı kimi hover zamanı rəngli görünüşə keçidi tətbiq etmək.
+- [x] Headerdəki Cavidan Fatihi marka yazısını daha böyük və nəzərəçarpan etmək.
+- [x] Header və mobil menyuda marka yazısını CAVİDAN FATİHİ olaraq düzgün İ hərfi ilə yazmaq.
+- [x] Saytın aşağı hissəsində görünən “Made with Manus” markalamasını gizlətmək.
+- [x] `footer-watermark` gec render olarsa da watermarkın gizlədilməsi üçün etibarlı observer mexanizmi əlavə etmək.
+- [x] Canlı `cavidanfat-q9hobjvq.manus.space` domenində watermarkın görünmədiyini doğrulamaq.
+- [x] Platforma hostunun shadow-rootu gec hazırlaşdıqda observeri bağlamaq üçün qısa retry mexanizmi əlavə etmək.
+- [x] Ana səhifənin aşağısındakı sosial və musiqi platforma keçidlərini real ağ konturlu ikonlarla yeniləmək.
+- [x] Oval platforma kapsulunu kvadrat kənarlı, minimalist çərçivəli ikon blokları ilə əvəzləmək.
