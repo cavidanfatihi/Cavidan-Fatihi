@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { type Locale, useLocale } from "@/contexts/LocaleContext";
 
-const SITE_URL = "https://cavidanfatihi.com";
+const SITE_URL = "https://www.cavidanfatihi.com";
 const SOCIAL_IMAGE = `${SITE_URL}/manus-storage/IMG_8446_f2f1cc25.webp`;
 const LOGO = `${SITE_URL}/manus-storage/cf-monogram-black-square_15332b2e.png`;
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cavidanfatihi.com/sitemap.xml
+Sitemap: https://www.cavidanfatihi.com/sitemap.xml
