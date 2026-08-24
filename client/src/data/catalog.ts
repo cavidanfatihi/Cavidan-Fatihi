@@ -17,7 +17,7 @@ export type CatalogProduct = {
 export const catalogProducts: CatalogProduct[] = [
   {
     id: "keyrings",
-    image: "/manus-storage/catalog-keyrings.webp",
+    image: "/manus-storage/cf-keyrings-monogram_11d64340.webp",
     price: 8,
     az: {
       title: "CavidanFatihi — Açarlıqlar",
@@ -30,7 +30,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "hat",
-    image: "/manus-storage/catalog-hat.webp",
+    image: "/manus-storage/cf-hat-monogram_becad9b0.webp",
     price: 15,
     az: {
       title: "CF — Kepka",
@@ -43,7 +43,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "cup",
-    image: "/manus-storage/catalog-cup.webp",
+    image: "/manus-storage/cf-cup-monogram_37860047.webp",
     price: 10,
     az: {
       title: "FATİHİ — Fincan",
@@ -56,7 +56,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "hoodie",
-    image: "/manus-storage/catalog-hoodie.webp",
+    image: "/manus-storage/cf-hoodie-fatihi_03bc5784.webp",
     price: 50,
     az: {
       title: "FATİHİ — Kapüşonlu Hoodie",
@@ -69,7 +69,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "tote",
-    image: "/manus-storage/catalog-tote.webp",
+    image: "/manus-storage/cf-tote-fatihi_d9c889c8.webp",
     price: 15,
     az: {
       title: "FATİHİ — Bez Çanta",
@@ -82,7 +82,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "vinyl",
-    image: "/manus-storage/catalog-vinyl.webp",
+    image: "/manus-storage/cf-vinyl-fatihi_e9a86c3e.webp",
     price: 40,
     az: {
       title: "Xatirə — Məhdud Sayda Vinil",
