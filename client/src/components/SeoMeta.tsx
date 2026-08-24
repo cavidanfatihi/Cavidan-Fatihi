@@ -11,7 +11,7 @@ type LocalizedMeta = Record<Locale, { title: string; description: string }>;
 const pageMeta: Record<string, LocalizedMeta> = {
   "/": {
     az: {
-      title: "Cavidan Fatihi | Azərbaycanlı Müğənni — Rəsmi Sayt",
+      title: "Cavidan Fatihi — Official Website",
       description: "Cavidan Fatihinin rəsmi saytı: mahnılar, rəsmi kliplər, canlı konsertlər, media və əməkdaşlıq.",
     },
     en: {
