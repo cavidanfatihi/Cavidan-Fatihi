@@ -9,7 +9,7 @@ import { musicPlatforms, officialYouTubeReleases } from "@shared/musicCatalog";
 import { BOOKING_PHONE_DISPLAY, buildBookingWhatsAppUrl } from "@shared/siteBrand";
 import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const translations = {
   az: {
@@ -31,21 +31,44 @@ function PageIntro({ number, eyebrow, title, copy, image, portrait = false, colo
   return <section className="group relative isolate min-h-[52svh] overflow-hidden border-b border-white/10 bg-black"><img src={image} alt="" className={`absolute inset-0 -z-20 size-full object-contain object-center ${imageStyle}`} /><div className={`absolute inset-0 -z-10 ${overlayStyle}`} /><div className="mx-auto flex min-h-[52svh] max-w-[1600px] items-end px-5 pb-14 pt-28 lg:px-10 lg:pb-18"><div className="max-w-2xl"><p className="mono text-zinc-400">{number}</p><p className="mono mt-7 text-zinc-400">{eyebrow}</p>{title && <h1 className="type-display mt-4 text-5xl leading-[.92] sm:text-7xl">{title}</h1>}{copy && <p className="mt-6 max-w-xl text-base leading-8 text-zinc-300">{copy}</p>}</div></div></section>;
 }
 
-function BackgroundVideo({ src, startAt = 0, title, poster, monochrome = false }: { src: string; startAt?: number; title: string; poster?: string; monochrome?: boolean }) {
+function BackgroundVideo({ src, title, poster, monochrome = false }: { src: string; title: string; poster: string; monochrome?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMotionCapableDesktop, setIsMotionCapableDesktop] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [ready, setReady] = useState(false);
-  const playFromStart = (video: HTMLVideoElement) => {
-    const safeStart = Math.min(startAt, Math.max(0, video.duration - 0.25));
-    if (Math.abs(video.currentTime - safeStart) > 0.1) video.currentTime = safeStart;
-    void video.play().catch(() => undefined);
-  };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const syncEligibility = () => setIsMotionCapableDesktop(mediaQuery.matches);
+    syncEligibility();
+    mediaQuery.addEventListener("change", syncEligibility);
+    return () => mediaQuery.removeEventListener("change", syncEligibility);
+  }, []);
+
+  useEffect(() => {
+    if (!isMotionCapableDesktop || !containerRef.current) {
+      setShouldLoadVideo(false);
+      setReady(false);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        setShouldLoadVideo(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: "160px" });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [isMotionCapableDesktop]);
+
   const monochromeClass = monochrome ? "grayscale contrast-110" : "";
-  return <><img src={poster} alt="" aria-hidden="true" className={`absolute inset-0 z-0 size-full bg-black object-cover object-[50%_18%] transition-opacity duration-500 ${monochromeClass} ${ready ? "opacity-0" : "opacity-100"}`} /><video aria-label={title} autoPlay muted playsInline preload="auto" poster={poster} onCanPlay={event => { setReady(true); playFromStart(event.currentTarget); }} onLoadedMetadata={event => playFromStart(event.currentTarget)} onEnded={event => playFromStart(event.currentTarget)} className={`absolute inset-0 z-10 size-full bg-transparent object-cover object-[50%_18%] ${monochromeClass}`}><source src={src} type="video/mp4" /></video></>;
+  return <div ref={containerRef} className="absolute inset-0"><img src={poster} alt="" aria-hidden="true" fetchPriority="high" className={`absolute inset-0 z-0 size-full bg-black object-cover object-[50%_18%] transition-opacity duration-500 ${monochromeClass} ${ready ? "opacity-0" : "opacity-100"}`} />{shouldLoadVideo ? <video aria-label={title} autoPlay loop muted playsInline preload="metadata" poster={poster} onCanPlay={() => setReady(true)} onError={() => setReady(false)} className={`absolute inset-0 z-10 size-full bg-transparent object-cover object-[50%_18%] ${monochromeClass}`}><source src={src} type="video/mp4" /></video> : null}</div>;
 }
 
 export function HomePage() {
   const { locale } = useLocale();
   const homePlatforms = [{ label: "Facebook", href: "https://www.facebook.com/fatihicavidan", icon: "/manus-storage/facebook_853659b8.svg" }, { label: "Instagram", href: "https://www.instagram.com/cavidanfatihi/", icon: "/manus-storage/instagram_192fc148.svg" }, { label: "Spotify", href: musicPlatforms[0].href, icon: "/manus-storage/spotify_b551067a.svg" }, { label: "Apple Music", href: musicPlatforms[1].href, icon: "/manus-storage/applemusic_c94f89de.svg" }, { label: "Deezer", href: musicPlatforms[2].href, icon: "/manus-storage/deezer_ca18166c.svg" }, { label: "YouTube", href: musicPlatforms[3].href, icon: "/manus-storage/youtube_06949fb2.svg" }];
-  return <><section className="relative isolate min-h-[100svh] overflow-hidden bg-black"><BackgroundVideo src="/manus-storage/xatire-clip-1080p_abcbd791.mp4" startAt={30} monochrome title={locale === "az" ? "Cavidan Fatihi — Xatirə, 30-cu saniyədən" : "Cavidan Fatihi — Xatirə, from 30 seconds"} poster="/manus-storage/xatire-30-poster_f1c34901.jpg" /><div className="absolute inset-0 z-20 bg-black/30" /><h1 className="sr-only">{locale === "az" ? "Cavidan Fatihi — Azərbaycanlı müğənni və canlı ifaçı" : "Cavidan Fatihi — Azerbaijani singer and live performer"}</h1></section><nav aria-label={locale === "az" ? "Rəsmi platformalar" : "Official platforms"} className="fixed inset-x-5 bottom-20 z-30 flex justify-center sm:bottom-8"><div className="grid grid-cols-6 gap-2">{homePlatforms.map(({ label, href, icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label} className="group grid size-10 place-items-center border border-white/35 bg-black/45 transition hover:scale-105 hover:border-white hover:bg-white sm:size-11"><img src={icon} alt="" aria-hidden="true" className="size-5 object-contain brightness-0 invert transition group-hover:brightness-0 group-hover:invert-0 sm:size-5.5" /></a>)}</div></nav></>;
+  return <><section className="relative isolate min-h-[100svh] overflow-hidden bg-black"><BackgroundVideo src="/manus-storage/xatire-hero-loop-720p_6d47568f.mp4" monochrome title={locale === "az" ? "Cavidan Fatihi — Xatirə, 30-cu saniyədən" : "Cavidan Fatihi — Xatirə, from 30 seconds"} poster="/manus-storage/xatire-30-poster_f1c34901.jpg" /><div className="absolute inset-0 z-20 bg-black/30" /><h1 className="sr-only">{locale === "az" ? "Cavidan Fatihi rəsmi saytı" : "Cavidan Fatihi official website"}</h1></section><nav aria-label={locale === "az" ? "Rəsmi platformalar" : "Official platforms"} className="fixed inset-x-5 bottom-20 z-30 flex justify-center sm:bottom-8"><div className="grid grid-cols-6 gap-2">{homePlatforms.map(({ label, href, icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label} className="group grid size-10 place-items-center border border-white/35 bg-black/45 transition hover:scale-105 hover:border-white hover:bg-white sm:size-11"><img src={icon} alt="" aria-hidden="true" className="size-5 object-contain brightness-0 invert transition group-hover:brightness-0 group-hover:invert-0 sm:size-5.5" /></a>)}</div></nav></>;
 }
 
 export function AboutPage() {
@@ -54,7 +77,7 @@ export function AboutPage() {
   return <><PageIntro number="01" eyebrow={t.about} title="" copy="" image="/manus-storage/IMG_8446_f2f1cc25.webp" portrait colorOnHover /><section className="mx-auto grid max-w-[1600px] gap-12 px-5 py-18 lg:grid-cols-[.72fr_1.28fr] lg:px-10 lg:py-28"><div className="lg:sticky lg:top-28 lg:h-fit"><img src="/manus-storage/IMG_3435_90049385.JPG" alt="Cavidan Fatihi" className="aspect-[4/5] w-full object-cover object-top brightness-110 contrast-110 grayscale transition duration-700 hover:brightness-100 hover:grayscale-0" /><p className="mono mt-5 text-zinc-500">CAVIDAN FATIHI / 1994 —</p></div><div><div className="max-w-2xl space-y-7 text-base leading-8 text-zinc-300">{paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div></div></section></>;
 }
 
-export function ConcertsPage() { const { locale } = useLocale(); const t = translations[locale]; const images = filterGalleryItems("concert"); return <><section className="relative isolate min-h-[72svh] overflow-hidden bg-black"><BackgroundVideo src="/manus-storage/solo-konsert-1080p_cdc337d4.mp4" title={locale === "az" ? "Cavidan Fatihi solo konsert görüntüləri" : "Cavidan Fatihi solo concert footage"} poster="/manus-storage/IMG_9661_d08d2c57.webp" /><div className="absolute inset-0 z-20 bg-black/35" /><h1 className="sr-only">{t.concerts}</h1></section><section aria-labelledby="concert-gallery" className="mx-auto max-w-[1600px] px-5 py-10 lg:px-10 lg:py-16"><h2 id="concert-gallery" className="sr-only">{t.concerts}</h2><div className="grid gap-3 md:grid-cols-3">{images.slice(0, 6).map(image => <article key={image.src} className="overflow-hidden bg-zinc-900"><img src={image.src} alt={getLocalizedGalleryAlt(image, locale)} className="aspect-[4/3] w-full object-cover object-top grayscale transition duration-700 hover:scale-105 hover:grayscale-0" /></article>)}</div></section></>; }
+export function ConcertsPage() { const { locale } = useLocale(); const t = translations[locale]; const images = filterGalleryItems("concert"); return <><section className="relative isolate min-h-[72svh] overflow-hidden bg-black"><BackgroundVideo src="/manus-storage/solo-konsert-hero-loop-720p_cf221356.mp4" title={locale === "az" ? "Cavidan Fatihi solo konsert görüntüləri" : "Cavidan Fatihi solo concert footage"} poster="/manus-storage/solo-konsert-poster_5e2cafda.jpg" /><div className="absolute inset-0 z-20 bg-black/35" /><h1 className="sr-only">{t.concerts}</h1></section><section aria-labelledby="concert-gallery" className="mx-auto max-w-[1600px] px-5 py-10 lg:px-10 lg:py-16"><h2 id="concert-gallery" className="sr-only">{t.concerts}</h2><div className="grid gap-3 md:grid-cols-3">{images.slice(0, 6).map(image => <article key={image.src} className="overflow-hidden bg-zinc-900"><img src={image.src} alt={getLocalizedGalleryAlt(image, locale)} className="aspect-[4/3] w-full object-cover object-top grayscale transition duration-700 hover:scale-105 hover:grayscale-0" /></article>)}</div></section></>; }
 
 export function MusicPage() { const { locale } = useLocale(); const t = translations[locale]; return <><PageIntro number="03" eyebrow={t.music} title="" copy={locale === "az" ? "Bütün rəsmi platformalar və Cavidan Fatihi kanalı." : "Official music platforms and the Cavidan Fatihi channel."} image="/manus-storage/IMG_8438_c22cd5bc.webp" colorOnHover /><section className="mx-auto max-w-[1600px] px-5 py-18 lg:px-10 lg:py-28"><div className="grid gap-px border border-white/15 sm:grid-cols-2 lg:grid-cols-4">{musicPlatforms.map(platform => <a key={platform.id} href={platform.href} target="_blank" rel="noreferrer" className="group flex min-h-32 flex-col justify-between bg-black p-6 transition hover:bg-white hover:text-black"><span className="mono text-zinc-400 transition group-hover:text-zinc-600">{locale === "az" ? "Dinlə" : "Listen"}</span><span className="flex items-center justify-between gap-4 text-xl font-semibold tracking-[.04em]"><span>{platform.label}</span><ArrowDownRight className="size-5 transition group-hover:translate-x-1 group-hover:translate-y-1" /></span></a>)}</div><div className="mt-18 max-w-4xl"><div className="flex items-end justify-between gap-4"><div><p className="mono">{t.youtube}</p><h2 className="type-display mt-3 text-4xl sm:text-6xl">{t.clips}</h2></div><a href={musicPlatforms[3].href} target="_blank" rel="noreferrer" className="line-link">YouTube <ChevronRight className="size-4" /></a></div><p className="mt-4 text-sm leading-7 text-zinc-400">{locale === "az" ? `${officialYouTubeReleases.length} rəsmi video yayımı` : `${officialYouTubeReleases.length} official video releases`}</p><div className="mt-8 border-y border-white/15">{officialYouTubeReleases.map((video, index) => <a key={video.id} href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-5 border-b border-white/10 py-5 last:border-b-0"><span className="mono shrink-0 text-zinc-500">{String(index + 1).padStart(2, "0")}</span><span className="flex-1 text-base font-medium tracking-[.04em] text-zinc-100 transition group-hover:text-white sm:text-lg">{video.title}</span><span aria-label={locale === "az" ? `${video.title} videosunu YouTube-da aç` : `Open ${video.title} on YouTube`} className="text-[.65rem] font-bold uppercase tracking-[.15em] text-zinc-400 transition group-hover:text-white">YouTube</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></a>)}</div></div></section></>; }
 
