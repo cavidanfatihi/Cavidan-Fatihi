@@ -8,15 +8,20 @@ const LOGO = `${SITE_URL}/manus-storage/cf-monogram-black-square_15332b2e.png`;
 
 type LocalizedMeta = Record<Locale, { title: string; description: string }>;
 
+const siteKeywords: Record<Locale, string> = {
+  az: "Cavidan Fatihi, Azərbaycanlı müğənni, Azərbaycanlı ifaçı, musiqiçi, canlı musiqi, retro musiqilər, gitara ifası, toy müğənnisi, ad günü ifaçısı, korporativ tədbir, konsertlər",
+  en: "Cavidan Fatihi, Azerbaijani singer, Azerbaijani musician, live music performer, retro music, guitar performance, wedding singer Azerbaijan, birthday event singer, corporate event performer, live concerts",
+};
+
 const pageMeta: Record<string, LocalizedMeta> = {
   "/": {
     az: {
       title: "Cavidan Fatihi — Official Website",
-      description: "Cavidan Fatihinin rəsmi saytı: mahnılar, rəsmi kliplər, canlı konsertlər, media və əməkdaşlıq.",
+      description: "Cavidan Fatihi — Azərbaycanlı müğənni, musiqiçi və gitara ifaçısı. Canlı musiqi, retro mahnılar, konsertlər, toy, ad günü və korporativ tədbirlər üçün əməkdaşlıq.",
     },
     en: {
       title: "Cavidan Fatihi | Official Website",
-      description: "The official website of Cavidan Fatihi: music, concerts, videos, media and official merchandise.",
+      description: "Cavidan Fatihi is an Azerbaijani singer, musician and guitar performer for live music, retro repertoire, concerts, weddings, birthdays and corporate events.",
     },
   },
   "/about": {
@@ -32,11 +37,11 @@ const pageMeta: Record<string, LocalizedMeta> = {
   "/concerts": {
     az: {
       title: "Cavidan Fatihi konsertləri | Canlı çıxışlar",
-      description: "Cavidan Fatihinin canlı çıxışları, konsert görüntüləri və səhnə anları.",
+      description: "Cavidan Fatihinin canlı çıxışları, konsert görüntüləri, retro musiqilər və gitara ifalı səhnə anları.",
     },
     en: {
       title: "Cavidan Fatihi Concerts | Live Performances",
-      description: "Explore live performances, concert footage and stage moments from Cavidan Fatihi.",
+      description: "Explore live performances, retro music, guitar-led concert footage and stage moments from Cavidan Fatihi.",
     },
   },
   "/music": {
@@ -72,11 +77,11 @@ const pageMeta: Record<string, LocalizedMeta> = {
   "/contact": {
     az: {
       title: "Cavidan Fatihi ilə əlaqə | Əməkdaşlıq",
-      description: "Tədbir, konsert və yaradıcı əməkdaşlıq üçün Cavidan Fatihi ilə əlaqə saxlayın.",
+      description: "Toy, nişan, ad günü, korporativ tədbir, konsert və canlı musiqi üçün Cavidan Fatihi ilə əlaqə saxlayın.",
     },
     en: {
       title: "Contact Cavidan Fatihi | Booking",
-      description: "Contact Cavidan Fatihi for events, concerts and creative collaborations.",
+      description: "Book Cavidan Fatihi for weddings, birthdays, corporate events, concerts and live music performances.",
     },
   },
 };
@@ -112,6 +117,7 @@ export function SeoMeta() {
     document.documentElement.lang = locale;
     document.title = meta.title;
     setMeta('meta[name="description"]', "name", "description", meta.description);
+    setMeta('meta[name="keywords"]', "name", "keywords", siteKeywords[locale]);
     setMeta('meta[property="og:title"]', "property", "og:title", meta.title);
     setMeta('meta[property="og:description"]', "property", "og:description", meta.description);
     setMeta('meta[property="og:url"]', "property", "og:url", canonicalUrl);
@@ -130,7 +136,8 @@ export function SeoMeta() {
         url: SITE_URL,
         image: SOCIAL_IMAGE,
         logo: LOGO,
-        jobTitle: "Musician",
+        jobTitle: "Azerbaijani Singer and Musician",
+        knowsAbout: ["Azerbaijani music", "live music", "retro music", "guitar performance"],
         telephone: "+994992991177",
         sameAs: [
           "https://www.facebook.com/fatihicavidan",
