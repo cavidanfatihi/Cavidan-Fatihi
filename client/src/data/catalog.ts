@@ -56,7 +56,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "hoodie",
-    image: "/manus-storage/cf-hoodie-fatihi_03bc5784.webp",
+    image: "/manus-storage/cf-hoodie-fatihi-thin_681d723e.webp",
     price: 50,
     az: {
       title: "FATİHİ — Kapüşonlu Hoodie",
@@ -69,7 +69,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "tote",
-    image: "/manus-storage/cf-tote-fatihi_d9c889c8.webp",
+    image: "/manus-storage/cf-tote-fatihi-thin_5d27b4f4.webp",
     price: 15,
     az: {
       title: "FATİHİ — Bez Çanta",
@@ -82,7 +82,7 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: "vinyl",
-    image: "/manus-storage/cf-vinyl-fatihi_e9a86c3e.webp",
+    image: "/manus-storage/cf-vinyl-fatihi-thin_ae6d8e28.webp",
     price: 40,
     az: {
       title: "Xatirə — Məhdud Sayda Vinil",
