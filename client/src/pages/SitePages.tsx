@@ -11,6 +11,8 @@ import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucid
 import { Link } from "wouter";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+export { default as HomePage } from "./HomePage";
+
 const translations = {
   az: {
     home: "Ana səhifə", latest: "Son buraxılış", listen: "Dinlə", preview: "Səssiz klip önizləməsi", booking: "Əməkdaşlıq üçün yaz", about: "Bioqrafiya", concerts: "Konsertlər", music: "Musiqi", media: "Media", shop: "Mağaza", contact: "Əlaqə", explore: "Kəşf et", upcoming: "Növbəti tarixlər tezliklə elan olunacaq.", eventHint: "Yeni səhnə tarixləri və bilet keçidləri burada paylaşılacaq.", biography: "Bioqrafiya", selected: "Seçilmiş anlar", all: "Hamısı", concert: "Konsert", session: "Fotosessiya", backstage: "Backstage", clips: "Rəsmi kliplər", catalogue: "Rəsmi məhsullar", noProducts: "Merch kolleksiyası tezliklə genişlənəcək.", noProductsHint: "İlk məhsul seçimi artıq mağazada görünür; yeni parçalar əlavə olunduqca burada yer alacaq.", add: "Səbətə əlavə et", contactTitle: "Bir səhnə, bir fikir, bir layihə.", contactCopy: "Tədbir, ad günü, korporativ gecə, toy-nişan və ya xüsusi yaradıcı layihə üçün əlaqə saxlayın.", whatsapp: "WhatsApp ilə yaz", formTitle: "Müraciətinizi göndərin", formCopy: "Tarix, məkan və istədiyiniz formatı paylaşın.", timeline: ["Yevlax · məktəb illəri və fortepiano", "Təhsil · gitara ilə yenidən musiqiyə dönüş", "Sənsiz · professional musiqi karyerasının başlanğıcı"], upNext: "NÖVBƏTİ", live: "CANLI", spotify: "Spotify", youtube: "YouTube", image: "Görüntü", slide: "Slayd", whatsappBooking: "WhatsApp ilə əməkdaşlıq",
