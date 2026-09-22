@@ -18,6 +18,7 @@ export type YouTubeRelease = {
 
 // Official channel's accessible Video-tab catalogue, collected 20 August 2026.
 export const officialYouTubeReleases: YouTubeRelease[] = [
+  { id: "du3mMPFqdvs", title: "Sən oldun" },
   { id: "GVeEua_IEls", title: "TUTQUN" },
   { id: "m__RAMNnchA", title: "Ay Gecikən Məhəbbətim" },
   { id: "ri3veh_4pPw", title: "Bir Xumar Baxışla" },
