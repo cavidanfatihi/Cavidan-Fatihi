@@ -46,7 +46,7 @@ function BackgroundVideo({ desktopSrc, mobileSrc, title, poster }: { desktopSrc:
   }, [isDesktop, isMotionAllowed]);
 
   const videoSrc = isDesktop ? desktopSrc : mobileSrc;
-  return <div ref={containerRef} className="absolute inset-0"><img src={poster} alt="" aria-hidden="true" fetchPriority="high" className={`absolute inset-0 z-0 size-full bg-black object-cover object-center grayscale contrast-110 transition-opacity duration-500 ${ready ? "opacity-0" : "opacity-100"}`} />{shouldLoadVideo ? <video aria-label={title} autoPlay loop muted playsInline preload="metadata" poster={poster} onCanPlay={() => setReady(true)} onError={() => setReady(false)} className="absolute inset-0 z-10 size-full bg-transparent object-cover object-center grayscale contrast-110"><source src={videoSrc} type="video/mp4" /></video> : null}</div>;
+  return <div ref={containerRef} className="absolute inset-0"><img src={poster} alt="" aria-hidden="true" fetchPriority="high" className={`absolute inset-0 z-0 size-full scale-[1.12] bg-black object-cover object-center grayscale contrast-110 transition-opacity duration-500 ${ready ? "opacity-0" : "opacity-100"}`} />{shouldLoadVideo ? <video aria-label={title} autoPlay loop muted playsInline preload="metadata" poster={poster} onCanPlay={() => setReady(true)} onError={() => setReady(false)} className="absolute inset-0 z-10 size-full scale-[1.12] bg-transparent object-cover object-center grayscale contrast-110"><source src={videoSrc} type="video/mp4" /></video> : null}</div>;
 }
 
 export default function HomePage() {
