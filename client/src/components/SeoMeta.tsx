@@ -27,7 +27,7 @@ const pageMeta: Record<string, LocalizedMeta> = {
   "/about": {
     az: {
       title: "Cavidan Fatihi haqqında | Bioqrafiya",
-      description: "Cavidan Fatihinin bioqrafiyası, musiqi yolunun başlanğıcı və yaradıcılıq hekayəsi.",
+      description: "Cavidan Fatihi — Azərbaycanın tanınmış müğənnisi, bəstəkarı və musiqi prodüseri. Onun bioqrafiyası və yaradıcılıq yolu.",
     },
     en: {
       title: "About Cavidan Fatihi | Biography",
@@ -57,11 +57,11 @@ const pageMeta: Record<string, LocalizedMeta> = {
   "/media": {
     az: {
       title: "Cavidan Fatihi media | Foto və videolar",
-      description: "Cavidan Fatihinin konsert, səhnəarxası və fotosessiya görüntülərindən seçilmiş media arxivi.",
+      description: "Cavidan Fatihinin fotoqalereyası, TV və radio çıxışları, müsahibələri, mətbuat yazıları və konsert arxivi.",
     },
     en: {
       title: "Cavidan Fatihi Media | Photos and Videos",
-      description: "Browse selected concert, backstage and portrait media from Cavidan Fatihi.",
+      description: "Browse Cavidan Fatihi’s photo gallery, TV and radio appearances, interviews, press features and concert archive.",
     },
   },
   "/shop": {
