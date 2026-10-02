@@ -8,7 +8,8 @@ const pages = {
   "/about": { title: "Cavidan Fatihi haqqında | Bioqrafiya", description: "Cavidan Fatihinin bioqrafiyası, musiqi yolunun başlanğıcı və yaradıcılıq hekayəsi." },
   "/concerts": { title: "Cavidan Fatihi konsertləri | Canlı çıxışlar", description: "Cavidan Fatihinin canlı çıxışları, konsert görüntüləri, retro musiqilər və gitara ifalı səhnə anları." },
   "/music": { title: "Cavidan Fatihi musiqiləri | Rəsmi platformalar", description: "Cavidan Fatihinin rəsmi musiqilərini Spotify, Apple Music, Deezer və YouTube-da dinləyin." },
-  "/media": { title: "Cavidan Fatihi media | Foto və videolar", description: "Cavidan Fatihinin konsert, səhnəarxası və fotosessiya görüntülərindən seçilmiş media arxivi." },
+  "/media": { title: "Cavidan Fatihi media | Xəbərlər, müsahibələr və çıxışlar", description: "Cavidan Fatihinin yayımlanan xəbərləri, TV və radio çıxışları, müsahibələri, videoları və konsert materialları." },
+  "/photo": { title: "Cavidan Fatihi Foto | Fotosessiya və səhnə görüntüləri", description: "Cavidan Fatihinin fotosessiya, səhnə və backstage şəkillərindən ibarət foto arxivi." },
   "/shop": { title: "Cavidan Fatihi məhsulları | Rəsmi kataloq", description: "Cavidan Fatihinin rəsmi məhsul kataloqu: vinil, hoodie, kepka, fincan, çanta və açarlıqlar." },
   "/contact": { title: "Cavidan Fatihi ilə əlaqə | Əməkdaşlıq", description: "Toy, nişan, ad günü, korporativ tədbir, konsert və canlı musiqi üçün Cavidan Fatihi ilə əlaqə saxlayın." },
 };

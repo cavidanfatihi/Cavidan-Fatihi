@@ -64,6 +64,16 @@ const pageMeta: Record<string, LocalizedMeta> = {
       description: "Browse Cavidan Fatihi’s photo gallery, TV and radio appearances, interviews, press features and concert archive.",
     },
   },
+  "/photo": {
+    az: {
+      title: "Cavidan Fatihi Foto | Fotosessiya və səhnə görüntüləri",
+      description: "Cavidan Fatihinin fotosessiya, səhnə və backstage şəkillərindən ibarət foto arxivi.",
+    },
+    en: {
+      title: "Cavidan Fatihi Photos | Portraits and Stage Archive",
+      description: "Browse Cavidan Fatihi’s portrait, stage and backstage photo archive.",
+    },
+  },
   "/shop": {
     az: {
       title: "Cavidan Fatihi məhsulları | Rəsmi kataloq",
