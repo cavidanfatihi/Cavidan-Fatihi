@@ -99,44 +99,23 @@ export function MusicPage() { const { locale } = useLocale(); const t = translat
 export function MediaPage() {
   const { locale } = useLocale();
   const t = translations[locale];
-  const [filter, setFilter] = useState<GalleryCategory>("all");
-  const [selected, setSelected] = useState<GalleryItem | null>(null);
-  const images = useMemo(() => filterGalleryItems(filter), [filter]);
-  const filters: { value: GalleryCategory; label: string }[] = [
-    { value: "all", label: t.all },
-    { value: "concert", label: t.concert },
-    { value: "session", label: t.session },
-    { value: "backstage", label: t.backstage },
-  ];
 
-  return <>
-    <PageIntro number="04" eyebrow={t.media} title="" copy="" image="/manus-storage/IMG_1926_b8114bf8.webp" portrait colorOnHover />
-    <section aria-labelledby="media-videos" className="mx-auto max-w-[1600px] px-5 pb-18 pt-10 lg:px-10 lg:pb-28 lg:pt-16">
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <p className="mono">YouTube</p>
-          <h2 id="media-videos" className="type-display mt-3 text-4xl sm:text-6xl">{locale === "az" ? "Son videolar" : "Latest videos"}</h2>
-        </div>
-        <a href={musicPlatforms[3].href} target="_blank" rel="noreferrer" className="line-link">YouTube <ChevronRight className="size-4" /></a>
+  return <section aria-labelledby="media-videos" className="mx-auto min-h-screen max-w-[1600px] px-5 pb-18 pt-32 lg:px-10 lg:pb-28 lg:pt-40">
+    <div className="flex items-end justify-between gap-4 border-b border-white/15 pb-6">
+      <div>
+        <p className="mono">YouTube</p>
+        <h1 id="media-videos" className="type-display mt-3 text-4xl sm:text-6xl">{locale === "az" ? "Son videolar" : "Latest videos"}</h1>
       </div>
-      <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">{locale === "az" ? "Son əlavə olunan rəsmi videolar və canlı ifalar." : "The latest official videos and live performances."}</p>
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {officialYouTubeReleases.slice(-16).reverse().map(video => <a key={"media-" + video.id} href={"https://www.youtube.com/watch?v=" + video.id + (video.startSeconds ? "&t=" + video.startSeconds + "s" : "")} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
-          <div className="aspect-video overflow-hidden bg-zinc-900"><img src={"https://i.ytimg.com/vi/" + video.id + "/hqdefault.jpg"} alt={video.title} loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
-          <div className="flex min-h-24 items-center justify-between gap-3 p-4"><span className="text-sm leading-6 text-zinc-200 transition group-hover:text-white">{video.title}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div>
-        </a>)}
-      </div>
-    </section>
-    <section className="mx-auto max-w-[1600px] px-5 pb-18 lg:px-10 lg:pb-28">
-      <div className="flex flex-wrap gap-2">{filters.map(item => <button onClick={() => setFilter(item.value)} key={item.value} className={
-        `border px-4 py-2 text-[.68rem] uppercase tracking-[.13em] transition ${filter === item.value ? "border-white bg-white text-black" : "border-white/20 text-zinc-500 hover:border-white hover:text-white"}`
-      }>{item.label}</button>)}</div>
-      <div className="mt-8 columns-2 gap-3 sm:columns-3 lg:columns-4">{images.map((image, index) => <button onClick={() => setSelected(image)} key={image.src} className="group relative mb-3 block w-full overflow-hidden bg-zinc-900 text-left"><img src={image.src} alt={getLocalizedGalleryAlt(image, locale)} loading="lazy" className={
-        `w-full object-cover ${getGalleryObjectPosition(image)} brightness-110 contrast-110 grayscale transition duration-700 group-hover:scale-105 group-hover:brightness-100 group-hover:grayscale-0 ${index % 5 === 0 ? "aspect-square" : ""}`
-      } /><span className="absolute inset-0 bg-white/0 transition group-hover:bg-white/10" /></button>)}</div>
-    </section>
-    <Dialog open={Boolean(selected)} onOpenChange={open => !open && setSelected(null)}><DialogContent className="max-h-[92vh] max-w-5xl border-white/15 bg-black p-2 text-white"><DialogTitle className="sr-only">{selected ? getLocalizedGalleryAlt(selected, locale) : t.image}</DialogTitle>{selected && <img src={selected.src} alt={getLocalizedGalleryAlt(selected, locale)} className="max-h-[85vh] w-full object-contain" />}</DialogContent></Dialog>
-  </>;
+      <a href={musicPlatforms[3].href} target="_blank" rel="noreferrer" className="line-link">YouTube <ChevronRight className="size-4" /></a>
+    </div>
+    <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">{locale === "az" ? "Son əlavə etdiyiniz rəsmi YouTube videoları." : "The latest official YouTube videos you added."}</p>
+    <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {officialYouTubeReleases.slice(-16).reverse().map(video => <a key={"media-" + video.id} href={"https://www.youtube.com/watch?v=" + video.id + (video.startSeconds ? "&t=" + video.startSeconds + "s" : "")} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
+        <div className="aspect-video overflow-hidden bg-zinc-900"><img src={"https://i.ytimg.com/vi/" + video.id + "/hqdefault.jpg"} alt={video.title} loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
+        <div className="flex min-h-24 items-center justify-between gap-3 p-4"><span className="text-sm leading-6 text-zinc-200 transition group-hover:text-white">{video.title}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div>
+      </a>)}
+    </div>
+  </section>;
 }
 export function ShopPage() {
   const { locale } = useLocale();
