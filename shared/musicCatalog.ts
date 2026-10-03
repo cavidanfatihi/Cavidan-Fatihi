@@ -71,3 +71,15 @@ export const officialYouTubeReleases: YouTubeRelease[] = [
   { id: "Z4WQjH6uZbg", title: "Music Room #2 | Şahin Əlizadə, Kadir Özel, Cavidan Fatihi, Ravan, Sadiq Abbasov, Eren Mumcu" },
   { id: "OthTuGAKu_4", title: "Karaoke Özəl - Cavidan Fatihi (21.05.2022)", startSeconds: 951 },
 ];
+
+// The exact latest links supplied by the artist for the Media page.
+const latestMediaIds = [
+  "7edatnHtVAE", "AonFQCocN4g", "6SWlyNO8XeE", "ZScDAHKJtlU",
+  "dxPcy2T9i3o", "KyPkhjvF1gE", "259lKa8K-xU", "rYk36qwts28",
+  "ThwZ2TIb5yM", "VWr3hRCXru4", "_fy3vgN0YuU", "3912BgHt7gA",
+  "t-QDbnT5i3o", "STyBZUCTC6I", "Z4WQjH6uZbg", "OthTuGAKu_4",
+] as const;
+
+export const latestMediaReleases: YouTubeRelease[] = latestMediaIds
+  .map(id => officialYouTubeReleases.find(release => release.id === id))
+  .filter((release): release is YouTubeRelease => Boolean(release));

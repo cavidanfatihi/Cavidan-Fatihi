@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLocale } from "@/contexts/LocaleContext";
 import { trpc } from "@/lib/trpc";
 import { filterGalleryItems, getGalleryObjectPosition, getLocalizedGalleryAlt, type GalleryCategory, type GalleryItem } from "@shared/siteContent";
-import { musicPlatforms, officialYouTubeReleases } from "@shared/musicCatalog";
+import { musicPlatforms, latestMediaReleases, officialYouTubeReleases } from "@shared/musicCatalog";
 import { BOOKING_PHONE_DISPLAY, buildBookingWhatsAppUrl } from "@shared/siteBrand";
 import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
@@ -110,7 +110,7 @@ export function MediaPage() {
     </div>
     <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">{locale === "az" ? "Son əlavə etdiyiniz rəsmi YouTube videoları." : "The latest official YouTube videos you added."}</p>
     <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {officialYouTubeReleases.slice(-16).reverse().map(video => <a key={"media-" + video.id} href={"https://www.youtube.com/watch?v=" + video.id + (video.startSeconds ? "&t=" + video.startSeconds + "s" : "")} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
+      {latestMediaReleases.slice().reverse().map(video => <a key={"media-" + video.id} href={"https://www.youtube.com/watch?v=" + video.id + (video.startSeconds ? "&t=" + video.startSeconds + "s" : "")} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
         <div className="aspect-video overflow-hidden bg-zinc-900"><img src={"https://i.ytimg.com/vi/" + video.id + "/hqdefault.jpg"} alt={video.title} loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
         <div className="flex min-h-24 items-center justify-between gap-3 p-4"><span className="text-sm leading-6 text-zinc-200 transition group-hover:text-white">{video.title}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div>
       </a>)}
