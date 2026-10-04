@@ -121,7 +121,7 @@ export function MediaPage() {
     <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">{locale === "az" ? "Cavidan Fatihi ilə bağlı rəsmi videolar, müsahibələr və xəbərlər." : "Official videos, interviews and press coverage featuring Cavidan Fatihi."}</p>
     <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {mediaItems.map(item => <a key={item.id} href={item.href} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
-        <div className="aspect-video overflow-hidden bg-zinc-900"><img src={item.image} alt={item.title} loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
+        <div className="aspect-video overflow-hidden bg-zinc-900"><img src={item.image} alt={item.title} loading="lazy" onError={event => { event.currentTarget.onerror = null; event.currentTarget.src = "/manus-storage/IMG_1926_b8114bf8.webp"; }} className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
         <div className="min-h-28 p-4"><div className="flex items-center justify-between gap-3"><span className="mono text-zinc-500">{item.source}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div><h2 className="mt-3 text-sm leading-6 text-zinc-200 transition group-hover:text-white">{item.title}</h2></div>
       </a>)}
     </div>

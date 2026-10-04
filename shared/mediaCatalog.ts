@@ -20,7 +20,8 @@ const youtube = (id: string, title: string, href = `https://www.youtube.com/watc
 
 const article = (id: string, title: string, href: string, image: string, source: string): MediaItem => ({ id, kind: "article", title, href, image, source });
 
-export const mediaItems: MediaItem[] = [
+const mediaItemsBase: MediaItem[] = [
+  youtube("DJhKjWCK8z4", "Dəşti | Cavidan Fatihi | TEDxBHOS", "https://www.youtube.com/watch?v=DJhKjWCK8z4"),
   youtube("7edatnHtVAE", "Tezdən oyan 17.03.2021"),
   youtube("AonFQCocN4g", "YERALTI #8 | YUXU rock qrupu tribute"),
   youtube("6SWlyNO8XeE", "Sənətin səsi verilişinin növbəti qonağı Cavidan Fatihidir", "https://www.youtube.com/watch?v=6SWlyNO8XeE", 12),
@@ -53,4 +54,17 @@ export const mediaItems: MediaItem[] = [
   article("525-interview", "“Sosial media mənim üçün daha əlçatandır” - Cavidan Fatihi", "https://525.az/news/166139-sosial-media-menim-ucun-daha-elcatandir-cavidan-fatihi", "https://525.az/img/pics/large/2021-04/189250_kzj3zvgc0u.jpg", "525-ci qəzet"),
   article("lent-interview", "Cavidan Fatihi: “Məndən “Can-cana” oxumağımı istəyirlər”", "https://lent.az/xeber/maqazin/cavidan-fatihi-menden-can-cana-oxumagimi-isteyirler-40657258", "https://lent.az/storage/news/2026/january/14/big/6967a48f0b7226967a48f0b72317684000156967a48f0b71f6967a48f0b721.webp", "Lent.az"),
   article("qht-zafar", "5 ilin Zəfər sədası", "https://qht.az/az/xeber/5-ilin-zefer-seda", "https://qht.az/og-default.png", "QHT.az"),
+];
+
+const mediaPriorityIds = [
+  "azertag-festival",
+  "bbc-interview",
+  "kulis-interview",
+  "kulis-festival",
+  "youtube-DJhKjWCK8z4",
+] as const;
+
+export const mediaItems: MediaItem[] = [
+  ...mediaPriorityIds.map(id => mediaItemsBase.find(item => item.id === id)).filter((item): item is MediaItem => Boolean(item)),
+  ...mediaItemsBase.filter(item => !mediaPriorityIds.includes(item.id as typeof mediaPriorityIds[number])),
 ];
