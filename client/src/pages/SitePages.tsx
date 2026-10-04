@@ -6,6 +6,7 @@ import { useLocale } from "@/contexts/LocaleContext";
 import { trpc } from "@/lib/trpc";
 import { filterGalleryItems, getGalleryObjectPosition, getLocalizedGalleryAlt, type GalleryCategory, type GalleryItem } from "@shared/siteContent";
 import { musicPlatforms, latestMediaReleases, officialYouTubeReleases } from "@shared/musicCatalog";
+import { mediaItems } from "@shared/mediaCatalog";
 import { BOOKING_PHONE_DISPLAY, buildBookingWhatsAppUrl } from "@shared/siteBrand";
 import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
@@ -99,20 +100,16 @@ export function MusicPage() { const { locale } = useLocale(); const t = translat
 export function MediaPage() {
   const { locale } = useLocale();
   const t = translations[locale];
-
-  return <section aria-labelledby="media-videos" className="mx-auto min-h-screen max-w-[1600px] px-5 pb-18 pt-32 lg:px-10 lg:pb-28 lg:pt-40">
+  return <section aria-labelledby="media-title" className="mx-auto min-h-screen max-w-[1600px] px-5 pb-18 pt-32 lg:px-10 lg:pb-28 lg:pt-40">
     <div className="flex items-end justify-between gap-4 border-b border-white/15 pb-6">
-      <div>
-        <p className="mono">YouTube</p>
-        <h1 id="media-videos" className="type-display mt-3 text-4xl sm:text-6xl">{locale === "az" ? "Son videolar" : "Latest videos"}</h1>
-      </div>
-      <a href={musicPlatforms[3].href} target="_blank" rel="noreferrer" className="line-link">YouTube <ChevronRight className="size-4" /></a>
+      <div><p className="mono">{t.media}</p><h1 id="media-title" className="type-display mt-3 text-4xl sm:text-6xl">{locale === "az" ? "Media" : "Media"}</h1></div>
+      <span className="mono text-zinc-500">{mediaItems.length} {locale === "az" ? "seçilmiş keçid" : "selected links"}</span>
     </div>
-    <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">{locale === "az" ? "Son əlavə etdiyiniz rəsmi YouTube videoları." : "The latest official YouTube videos you added."}</p>
+    <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">{locale === "az" ? "Cavidan Fatihi ilə bağlı rəsmi videolar, müsahibələr və xəbərlər." : "Official videos, interviews and press coverage featuring Cavidan Fatihi."}</p>
     <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {latestMediaReleases.slice().reverse().map(video => <a key={"media-" + video.id} href={"https://www.youtube.com/watch?v=" + video.id + (video.startSeconds ? "&t=" + video.startSeconds + "s" : "")} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
-        <div className="aspect-video overflow-hidden bg-zinc-900"><img src={"https://i.ytimg.com/vi/" + video.id + "/hqdefault.jpg"} alt={video.title} loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
-        <div className="flex min-h-24 items-center justify-between gap-3 p-4"><span className="text-sm leading-6 text-zinc-200 transition group-hover:text-white">{video.title}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div>
+      {mediaItems.map(item => <a key={item.id} href={item.href} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
+        <div className="aspect-video overflow-hidden bg-zinc-900"><img src={item.image} alt={item.title} loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
+        <div className="min-h-28 p-4"><div className="flex items-center justify-between gap-3"><span className="mono text-zinc-500">{item.source}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div><h2 className="mt-3 text-sm leading-6 text-zinc-200 transition group-hover:text-white">{item.title}</h2></div>
       </a>)}
     </div>
   </section>;
