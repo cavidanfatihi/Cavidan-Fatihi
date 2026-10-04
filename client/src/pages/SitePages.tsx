@@ -28,10 +28,8 @@ function WhatsAppLink({ children, className = "" }: { children: React.ReactNode;
   return <a href={buildBookingWhatsAppUrl(locale)} target="_blank" rel="noreferrer" className={className}>{children}</a>;
 }
 
-function PageIntro({ number, eyebrow, title, copy, image, portrait = false, colorOnHover = false }: { number: string; eyebrow: string; title: string; copy: string; image: string; portrait?: boolean; colorOnHover?: boolean }) {
-  const imageStyle = colorOnHover ? `${portrait ? "opacity-95" : "opacity-75"} brightness-110 contrast-110 grayscale transition duration-700 group-hover:opacity-100 group-hover:brightness-100 group-hover:grayscale-0` : portrait ? "opacity-95 brightness-110 contrast-110 grayscale" : "opacity-50 grayscale";
-  const overlayStyle = portrait ? "bg-gradient-to-r from-black via-black/45 to-black/5" : "bg-gradient-to-r from-black via-black/70 to-black/25";
-  return <section className="group relative isolate min-h-[52svh] overflow-hidden border-b border-white/10 bg-black"><img src={image} alt="" className={`absolute inset-0 -z-20 size-full object-contain object-center ${imageStyle}`} /><div className={`absolute inset-0 -z-10 ${overlayStyle}`} /><div className="mx-auto flex min-h-[52svh] max-w-[1600px] items-end px-5 pb-14 pt-28 lg:px-10 lg:pb-18"><div className="max-w-2xl"><p className="mono text-zinc-400">{number}</p><p className="mono mt-7 text-zinc-400">{eyebrow}</p>{title && <h1 className="type-display mt-4 text-5xl leading-[.92] sm:text-7xl">{title}</h1>}{copy && <p className="mt-6 max-w-xl text-base leading-8 text-zinc-300">{copy}</p>}</div></div></section>;
+function PageIntro({ number, eyebrow, title, copy }: { number: string; eyebrow: string; title: string; copy: string; image: string; portrait?: boolean; colorOnHover?: boolean }) {
+  return <section className="border-b border-white/10 bg-black pt-28 sm:pt-32"><div className="mx-auto flex min-h-[30svh] max-w-[1600px] items-end px-5 pb-12 lg:px-10 lg:pb-16"><div className="max-w-2xl"><p className="mono text-zinc-400">{number}</p><p className="mono mt-7 text-zinc-400">{eyebrow}</p>{title && <h1 className="type-display mt-4 text-5xl leading-[.92] sm:text-7xl">{title}</h1>}{copy && <p className="mt-6 max-w-xl text-base leading-8 text-zinc-300">{copy}</p>}</div></div></section>;
 }
 
 function BackgroundVideo({ src, title, poster, monochrome = false }: { src: string; title: string; poster: string; monochrome?: boolean }) {
