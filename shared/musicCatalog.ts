@@ -54,32 +54,4 @@ export const officialYouTubeReleases: YouTubeRelease[] = [
   { id: "clx1rHMKNDw", title: "Sənsiz | Rəsmi Audio" },
   { id: "DNWz4q2b7N0", title: "Batmış Gəminin Mahnısı | Cover" },
   { id: "4hH2zlU_kL4", title: "Mənə Bircə Məktub Yaz | Rəsmi Audio" },
-  { id: "7edatnHtVAE", title: "Tezdən oyan 17.03.2021" },
-  { id: "AonFQCocN4g", title: "YERALTI #8 | YUXU rock qrupu tribute" },
-  { id: "6SWlyNO8XeE", title: "Sənətin səsi verilişinin növbəti qonağı Cavidan Fatihidir", startSeconds: 12 },
-  { id: "ZScDAHKJtlU", title: "Akustik - Cavidan Fatihi | 13.09.2023" },
-  { id: "dxPcy2T9i3o", title: "YERALTI: söhbət var #58 | Şahin Əlizadə, Cavidan Fatihi, Zaur Kərimli" },
-  { id: "KyPkhjvF1gE", title: "Akustik - Cavidan Fatihi | 30.10.2025" },
-  { id: "259lKa8K-xU", title: "Cavidan Fatihi - Xatirə" },
-  { id: "rYk36qwts28", title: "#dogmaistedadlar - Cavidan Fatihi", startSeconds: 131 },
-  { id: "ThwZ2TIb5yM", title: "Çölçünün Səsi - Cavidan Fatihi - Səndən Nigaranam" },
-  { id: "VWr3hRCXru4", title: "Cavidan Fatihi, Elvin Paşa, Rəşad Nağı Mustafa və Fariz İlyas ilə Bir Axşam Səhnədə", startSeconds: 738 },
-  { id: "_fy3vgN0YuU", title: "Qaranın Səsi (18.02.2022)", startSeconds: 1457 },
-  { id: "3912BgHt7gA", title: "Söhbət-4 | Cavidan Fatihi (Tərlədən suallar!)", startSeconds: 22 },
-  { id: "t-QDbnT5i3o", title: "8 Mart Beynəlxalq Qadınlar Günü konsert buraxılışı | Kazım Can | Cavidan Fatihi", startSeconds: 1031 },
-  { id: "STyBZUCTC6I", title: "GEDİRƏM... (Cavidan Fatihi - Yada sal məni)" },
-  { id: "Z4WQjH6uZbg", title: "Music Room #2 | Şahin Əlizadə, Kadir Özel, Cavidan Fatihi, Ravan, Sadiq Abbasov, Eren Mumcu" },
-  { id: "OthTuGAKu_4", title: "Karaoke Özəl - Cavidan Fatihi (21.05.2022)", startSeconds: 951 },
 ];
-
-// The exact latest links supplied by the artist for the Media page.
-const latestMediaIds = [
-  "7edatnHtVAE", "AonFQCocN4g", "6SWlyNO8XeE", "ZScDAHKJtlU",
-  "dxPcy2T9i3o", "KyPkhjvF1gE", "259lKa8K-xU", "rYk36qwts28",
-  "ThwZ2TIb5yM", "VWr3hRCXru4", "_fy3vgN0YuU", "3912BgHt7gA",
-  "t-QDbnT5i3o", "STyBZUCTC6I", "Z4WQjH6uZbg", "OthTuGAKu_4",
-] as const;
-
-export const latestMediaReleases: YouTubeRelease[] = latestMediaIds
-  .map(id => officialYouTubeReleases.find(release => release.id === id))
-  .filter((release): release is YouTubeRelease => Boolean(release));

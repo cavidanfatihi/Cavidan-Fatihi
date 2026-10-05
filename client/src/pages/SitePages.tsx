@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLocale } from "@/contexts/LocaleContext";
 import { trpc } from "@/lib/trpc";
 import { filterGalleryItems, getGalleryObjectPosition, getLocalizedGalleryAlt, type GalleryCategory, type GalleryItem } from "@shared/siteContent";
-import { musicPlatforms, latestMediaReleases, officialYouTubeReleases } from "@shared/musicCatalog";
+import { musicPlatforms, officialYouTubeReleases } from "@shared/musicCatalog";
 import { mediaItems } from "@shared/mediaCatalog";
 import { BOOKING_PHONE_DISPLAY, buildBookingWhatsAppUrl } from "@shared/siteBrand";
 import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucide-react";
