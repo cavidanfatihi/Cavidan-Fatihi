@@ -21,6 +21,8 @@ const youtube = (id: string, title: string, href = `https://www.youtube.com/watc
 const article = (id: string, title: string, href: string, image: string, source: string): MediaItem => ({ id, kind: "article", title, href, image, source });
 
 const mediaItemsBase: MediaItem[] = [
+  youtube("UJ1vhixlt7E", "Bella ciao | Cavidan Fatihi | TEDxBHOS", "https://www.youtube.com/watch?v=UJ1vhixlt7E"),
+  youtube("fseRT9jPDfQ", "İntizar | Cavidan Fatihi | TEDxBHOS", "https://www.youtube.com/watch?v=fseRT9jPDfQ"),
   youtube("nhYLVF0tFfM", "Space tv- Novruz bayramı buraxılışı", "https://www.youtube.com/watch?v=nhYLVF0tFfM"),
   youtube("lKenR9fWcBU", "Space Tv - Dördün ağı - tokşou", "https://www.youtube.com/watch?v=lKenR9fWcBU"),
   youtube("YWc7K5uOlvE", "Hekayəm Var - Stand Up şou", "https://www.youtube.com/watch?v=YWc7K5uOlvE"),
