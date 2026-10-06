@@ -21,6 +21,8 @@ const youtube = (id: string, title: string, href = `https://www.youtube.com/watc
 const article = (id: string, title: string, href: string, image: string, source: string): MediaItem => ({ id, kind: "article", title, href, image, source });
 
 const mediaItemsBase: MediaItem[] = [
+  youtube("lKenR9fWcBU", "Space Tv - Dördün ağı - tokşou", "https://www.youtube.com/watch?v=lKenR9fWcBU"),
+  youtube("YWc7K5uOlvE", "Hekayəm Var - Stand Up şou", "https://www.youtube.com/watch?v=YWc7K5uOlvE"),
   youtube("DJhKjWCK8z4", "Dəşti | Cavidan Fatihi | TEDxBHOS", "https://www.youtube.com/watch?v=DJhKjWCK8z4"),
   youtube("7edatnHtVAE", "Tezdən oyan 17.03.2021"),
   youtube("AonFQCocN4g", "YERALTI #8 | YUXU rock qrupu tribute"),
