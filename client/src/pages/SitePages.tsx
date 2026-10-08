@@ -6,7 +6,7 @@ import { useLocale } from "@/contexts/LocaleContext";
 import { trpc } from "@/lib/trpc";
 import { filterGalleryItems, getGalleryObjectPosition, getLocalizedGalleryAlt, type GalleryCategory, type GalleryItem } from "@shared/siteContent";
 import { musicPlatforms, officialYouTubeReleases } from "@shared/musicCatalog";
-import { mediaItems } from "@shared/mediaCatalog";
+import { mediaItems, type MediaItem } from "@shared/mediaCatalog";
 import { BOOKING_PHONE_DISPLAY, buildBookingWhatsAppUrl } from "@shared/siteBrand";
 import { ArrowDownRight, CalendarDays, ChevronRight, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
@@ -105,17 +105,41 @@ export function PhotoPage() {
   </>;
 }
 
+const summerFestivalIds = new Set([
+  "azerbaijan-news-festival",
+  "kulis-festival",
+  "azertag-festival",
+  "turkic-summer-festival",
+  "trend-summer-festival",
+  "today-summer-festival",
+]);
+
+function MediaCard({ item }: { item: MediaItem }) {
+  return <a href={item.href} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
+    <div className="aspect-video overflow-hidden bg-zinc-900"><img src={item.image} alt={item.title} loading="lazy" onError={event => { event.currentTarget.onerror = null; event.currentTarget.src = "/manus-storage/IMG_1926_b8114bf8.webp"; }} className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
+    <div className="min-h-28 p-4"><div className="flex items-center justify-between gap-3"><span className="mono text-zinc-500">{item.source}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div><h2 className="mt-3 text-sm leading-6 text-zinc-200 transition group-hover:text-white">{item.title}</h2></div>
+  </a>;
+}
+
 export function MediaPage() {
   const { locale } = useLocale();
-  const t = translations[locale];
-  return <section aria-label="Media" className="mx-auto min-h-screen max-w-[1600px] px-5 pb-18 pt-6 lg:px-10 lg:pb-28 lg:pt-8"><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {mediaItems.map(item => <a key={item.id} href={item.href} target="_blank" rel="noreferrer" className="group overflow-hidden border border-white/10 bg-zinc-950">
-        <div className="aspect-video overflow-hidden bg-zinc-900"><img src={item.image} alt={item.title} loading="lazy" onError={event => { event.currentTarget.onerror = null; event.currentTarget.src = "/manus-storage/IMG_1926_b8114bf8.webp"; }} className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div>
-        <div className="min-h-28 p-4"><div className="flex items-center justify-between gap-3"><span className="mono text-zinc-500">{item.source}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div><h2 className="mt-3 text-sm leading-6 text-zinc-200 transition group-hover:text-white">{item.title}</h2></div>
-      </a>)}
+  const [summerFestivalOpen, setSummerFestivalOpen] = useState(false);
+  const festivalItems = mediaItems.filter(item => summerFestivalIds.has(item.id));
+  const displayItems: Array<MediaItem | "summer-festival-collection"> = [];
+  let collectionInserted = false;
+  for (const item of mediaItems) {
+    if (summerFestivalIds.has(item.id)) {
+      if (!collectionInserted) { displayItems.push("summer-festival-collection"); collectionInserted = true; }
+    } else displayItems.push(item);
+  }
+  return <section aria-label="Media" className="mx-auto min-h-screen max-w-[1600px] px-5 pb-18 pt-6 lg:px-10 lg:pb-28 lg:pt-8">
+    {summerFestivalOpen ? <section aria-labelledby="summer-festival-news" className="mb-8 border border-white/15 bg-zinc-950 p-4 sm:p-6"><div className="mb-5 flex items-start justify-between gap-4"><div><p className="mono text-zinc-500">{locale === "az" ? "KOLLEKSİYA / 2024" : "COLLECTION / 2024"}</p><h1 id="summer-festival-news" className="type-display mt-2 text-3xl sm:text-5xl">{locale === "az" ? "Yay Festivalı" : "Summer Festival"}</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-400">{locale === "az" ? "Heydər Əliyev Mərkəzinin parkındakı konsertlə bağlı bütün media xəbərləri." : "All media coverage of the concert at the Heydar Aliyev Center park."}</p></div><button type="button" onClick={() => setSummerFestivalOpen(false)} className="border border-white/20 px-3 py-2 text-xs uppercase tracking-[.12em] text-zinc-300 transition hover:border-white hover:text-white">{locale === "az" ? "Bağla" : "Close"}</button></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{festivalItems.map(item => <MediaCard key={item.id} item={item} />)}</div></section> : null}
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {displayItems.map(item => item === "summer-festival-collection" ? <button key={item} type="button" onClick={() => setSummerFestivalOpen(true)} aria-expanded={summerFestivalOpen} className="group overflow-hidden border border-white/15 bg-zinc-950 text-left"><div className="aspect-video overflow-hidden bg-zinc-900"><img src={festivalItems[0]?.image} alt="" aria-hidden="true" loading="lazy" className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" /></div><div className="min-h-28 p-4"><div className="flex items-center justify-between gap-3"><span className="mono text-zinc-500">{locale === "az" ? `${festivalItems.length} XƏBƏR` : `${festivalItems.length} STORIES`}</span><ChevronRight className="size-4 shrink-0 text-zinc-500 transition group-hover:translate-x-1 group-hover:text-white" /></div><h2 className="mt-3 text-sm leading-6 text-zinc-200 transition group-hover:text-white">{locale === "az" ? "Yay Festivalı" : "Summer Festival"}</h2></div></button> : <MediaCard key={item.id} item={item} />)}
     </div>
   </section>;
 }
+
 export function ShopPage() {
   const { locale } = useLocale();
   const t = translations[locale];
