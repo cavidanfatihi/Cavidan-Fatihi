@@ -60,9 +60,21 @@ const mediaItemsBase: MediaItem[] = [
   article("lent-interview", "Cavidan Fatihi: “Məndən “Can-cana” oxumağımı istəyirlər”", "https://lent.az/xeber/maqazin/cavidan-fatihi-menden-can-cana-oxumagimi-isteyirler-40657258", "https://lent.az/storage/news/2026/january/14/big/6967a48f0b7226967a48f0b72317684000156967a48f0b71f6967a48f0b721.webp", "Lent.az"),
   article("qht-zafar", "5 ilin Zəfər sədası", "https://qht.az/az/xeber/5-ilin-zefer-seda", "https://qht.az/og-default.png", "QHT.az"),
   article("baau-nowruz-fest", "Bakı Avrasiya Universitetində “Novruz Fest” festivalı keçirilib", "https://baau.edu.az/en/article/baki-avrasiya-universitetinde-quot-novruz-fest-quot-festivali-kecirilib-228", "https://baau.edu.az/uploads/files/baau_edu_az/news/tgt1.png", "Bakı Avrasiya Universiteti"),
+  article("turkic-summer-festival", "Heydər Əliyev Mərkəzinin parkında “Yay Festivalı”nın bağlanış konserti keçirilib", "https://turkic.world/en/articles/video_news/273166", "https://turkic.world/media/2024/08/26/1.jpg", "TurkicWorld"),
+  article("bsu-victory-echo", "“Five Years of the Victory Echo” konsert proqramı BSU-da keçirilib", "https://sdg.bsu.edu.az/news/five-years-of-the-victory-echo-concert-program-held-at-bsu", "/manus-storage/IMG_5953_b988ee9a.PNG", "Bakı Dövlət Universiteti"),
+  article("trend-summer-festival", "Heydar Aliyev Center to host final concert of Summer Festival", "https://www.trend.az/azerbaijan/society/3936651.html", "https://www.trend.az/media/2024/08/23/festival.jpg", "Trend News Agency"),
+  article("today-summer-festival", "Heydər Əliyev Mərkəzinin parkında “Yay Festivalı”nın bağlanış konserti keçirilib", "https://www.today.az/print/news/entertainment/252143.html", "https://www.today.az/pictures/pic252143.jpg", "Today.az"),
+  article("azertag-simurq", "“Simurq” olimpiadasının qalibləri müəyyənləşib", "https://special.azertag.az/az/xeber/4047555", "https://special.azertag.az/favicon.ico", "AZƏRTAC"),
+  article("proses-solo-concert", "Cavidan Fatihi ilk solo konsertini verəcək – TARİX AÇIQLANDI", "https://proses.az/news/17724/", "https://proses.az/wp-content/uploads/2024/03/Screenshot_2024-03-02-18-58-53-629_com.facebook.katana-edit.jpg", "Proses.az"),
 ];
 
 const mediaPriorityIds = [
+  "turkic-summer-festival",
+  "bsu-victory-echo",
+  "trend-summer-festival",
+  "today-summer-festival",
+  "azertag-simurq",
+  "proses-solo-concert",
   "azertag-festival",
   "bbc-interview",
   "kulis-interview",
