@@ -59,6 +59,7 @@ const mediaItemsBase: MediaItem[] = [
   article("525-interview", "“Sosial media mənim üçün daha əlçatandır” - Cavidan Fatihi", "https://525.az/news/166139-sosial-media-menim-ucun-daha-elcatandir-cavidan-fatihi", "https://525.az/img/pics/large/2021-04/189250_kzj3zvgc0u.jpg", "525-ci qəzet"),
   article("lent-interview", "Cavidan Fatihi: “Məndən “Can-cana” oxumağımı istəyirlər”", "https://lent.az/xeber/maqazin/cavidan-fatihi-menden-can-cana-oxumagimi-isteyirler-40657258", "https://lent.az/storage/news/2026/january/14/big/6967a48f0b7226967a48f0b72317684000156967a48f0b71f6967a48f0b721.webp", "Lent.az"),
   article("qht-zafar", "5 ilin Zəfər sədası", "https://qht.az/az/xeber/5-ilin-zefer-seda", "https://qht.az/og-default.png", "QHT.az"),
+  article("baau-nowruz-fest", "Bakı Avrasiya Universitetində “Novruz Fest” festivalı keçirilib", "https://baau.edu.az/en/article/baki-avrasiya-universitetinde-quot-novruz-fest-quot-festivali-kecirilib-228", "https://baau.edu.az/uploads/files/baau_edu_az/news/tgt1.png", "Bakı Avrasiya Universiteti"),
 ];
 
 const mediaPriorityIds = [
