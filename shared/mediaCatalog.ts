@@ -69,17 +69,15 @@ const mediaItemsBase: MediaItem[] = [
 ];
 
 const mediaPriorityIds = [
-  "turkic-summer-festival",
-  "bsu-victory-echo",
-  "trend-summer-festival",
-  "today-summer-festival",
-  "azertag-simurq",
-  "proses-solo-concert",
-  "azertag-festival",
-  "bbc-interview",
-  "kulis-interview",
-  "kulis-festival",
+  "youtube-UJ1vhixlt7E",
+  "youtube-fseRT9jPDfQ",
   "youtube-DJhKjWCK8z4",
+  "bbc-interview",
+  "azertag-simurq",
+  "azertag-festival",
+  "kulis-interview",
+  "bsu-victory-echo",
+  "proses-solo-concert",
 ] as const;
 
 export const mediaItems: MediaItem[] = [
