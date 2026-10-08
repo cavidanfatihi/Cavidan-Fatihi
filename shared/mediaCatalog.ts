@@ -64,14 +64,12 @@ const mediaItemsBase: MediaItem[] = [
   article("bsu-victory-echo", "“Five Years of the Victory Echo” konsert proqramı BSU-da keçirilib", "https://sdg.bsu.edu.az/news/five-years-of-the-victory-echo-concert-program-held-at-bsu", "/manus-storage/IMG_5953_b988ee9a.PNG", "Bakı Dövlət Universiteti"),
   article("trend-summer-festival", "Heydar Aliyev Center to host final concert of Summer Festival", "https://www.trend.az/azerbaijan/society/3936651.html", "https://www.trend.az/media/2024/08/23/festival.jpg", "Trend News Agency"),
   article("today-summer-festival", "Heydər Əliyev Mərkəzinin parkında “Yay Festivalı”nın bağlanış konserti keçirilib", "https://www.today.az/print/news/entertainment/252143.html", "https://www.today.az/pictures/pic252143.jpg", "Today.az"),
-  article("azertag-simurq", "“Simurq” olimpiadasının qalibləri müəyyənləşib", "https://special.azertag.az/az/xeber/4047555", "https://special.azertag.az/favicon.ico", "AZƏRTAC"),
+  article("azertag-simurq", "“Simurq” olimpiadasının qalibləri müəyyənləşib", "https://special.azertag.az/az/xeber/4047555", "/manus-storage/IMG_5953_b988ee9a.PNG", "AZƏRTAC"),
   article("proses-solo-concert", "Cavidan Fatihi ilk solo konsertini verəcək – TARİX AÇIQLANDI", "https://proses.az/news/17724/", "https://proses.az/wp-content/uploads/2024/03/Screenshot_2024-03-02-18-58-53-629_com.facebook.katana-edit.jpg", "Proses.az"),
 ];
 
 const mediaPriorityIds = [
   "youtube-UJ1vhixlt7E",
-  "youtube-fseRT9jPDfQ",
-  "youtube-DJhKjWCK8z4",
   "bbc-interview",
   "azertag-simurq",
   "azertag-festival",
